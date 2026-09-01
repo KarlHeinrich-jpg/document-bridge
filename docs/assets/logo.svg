@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 112" role="img" aria-labelledby="title desc">
+  <title id="title">文桥图标</title>
+  <desc id="desc">三张交叠的文档</desc>
+  <rect width="128" height="112" rx="24" fill="#f5f3ec"/>
+  <g stroke="#17221d" stroke-width="6" stroke-linejoin="round">
+    <path d="M25 28l43-7 11 68-43 7z" fill="#fffefa"/>
+    <path d="M43 20h45v70H43z" fill="#fffefa"/>
+    <path d="M59 27l43 7-11 65-43-7z" fill="#d9f171"/>
+  </g>
+</svg>

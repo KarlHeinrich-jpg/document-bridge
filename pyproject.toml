@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "document-bridge-local"
+version = "1.0.0"
+description = "Local-first Word, LaTeX and Markdown bidirectional converter"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+  { name = "KarlHeinrich-jpg" }
+]
+keywords = ["docx", "latex", "markdown", "pandoc", "document-converter"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Web Environment",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Text Processing :: Markup",
+]
+dependencies = [
+  "fastapi>=0.116,<1",
+  "python-multipart>=0.0.20,<1",
+  "pypandoc_binary>=1.16,<2",
+  "uvicorn[standard]>=0.35,<1",
+]
+
+[project.urls]
+Homepage = "https://github.com/KarlHeinrich-jpg/document-bridge"
+Documentation = "https://github.com/KarlHeinrich-jpg/document-bridge#readme"
+Issues = "https://github.com/KarlHeinrich-jpg/document-bridge/issues"
+
+[project.scripts]
+document-bridge = "app.launcher:main"
+document-bridge-cli = "app.cli:main"
+
+[tool.setuptools]
+packages = ["app", "app.static"]
+
+[tool.setuptools.package-data]
+app = ["static/*"]

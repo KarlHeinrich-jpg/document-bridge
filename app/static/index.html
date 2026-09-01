@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="在 Word、LaTeX 与 Markdown 之间进行本地文档转换。">
+  <title>文桥 · Document Bridge</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="文桥首页">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span>文桥</span>
+      </a>
+      <div class="engine-state" id="engine-state" role="status">
+        <span class="status-dot"></span>
+        <span>正在检查转换引擎</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">DOCUMENT BRIDGE</p>
+        <h1>让文档跨过<br><em>格式的边界</em></h1>
+        <p class="hero-copy">Word、LaTeX、Markdown 双向互转。文档只在你的电脑上处理，不上传到第三方服务。</p>
+      </section>
+
+      <section class="converter-card" aria-labelledby="converter-title">
+        <div class="card-heading">
+          <div>
+            <span class="step-label">01</span>
+            <h2 id="converter-title">选择转换方向</h2>
+          </div>
+          <span class="route-count">6 条转换路径</span>
+        </div>
+
+        <div class="format-row">
+          <label class="format-control">
+            <span>输入格式</span>
+            <select id="source-format" name="source_format">
+              <option value="auto">自动识别</option>
+              <option value="docx">Word · DOCX</option>
+              <option value="latex">LaTeX · TEX</option>
+              <option value="markdown">Markdown · MD</option>
+            </select>
+          </label>
+          <button class="swap-button" id="swap-button" type="button" aria-label="交换输入和输出格式" title="交换格式">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3 3m-3-3 3-3"/></svg>
+          </button>
+          <label class="format-control">
+            <span>输出格式</span>
+            <select id="target-format" name="target_format">
+              <option value="markdown">Markdown · MD</option>
+              <option value="docx">Word · DOCX</option>
+              <option value="latex">LaTeX · TEX</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="card-heading upload-heading">
+          <div>
+            <span class="step-label">02</span>
+            <h2>放入文档</h2>
+          </div>
+          <span class="privacy-note">仅本机处理</span>
+        </div>
+
+        <input id="file-input" type="file" accept=".docx,.md,.markdown,.tex,.latex,.zip" hidden>
+        <button class="drop-zone" id="drop-zone" type="button">
+          <span class="upload-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>
+          </span>
+          <span class="drop-title">拖拽文档到这里</span>
+          <span class="drop-subtitle">或点击选择 · DOCX / MD / TEX / ZIP · 最大 50 MB</span>
+        </button>
+
+        <div class="file-card" id="file-card" hidden>
+          <span class="file-badge" id="file-badge">DOCX</span>
+          <span class="file-copy">
+            <strong id="file-name"></strong>
+            <small id="file-size"></small>
+          </span>
+          <button id="remove-file" class="icon-button" type="button" aria-label="移除文件">×</button>
+        </div>
+
+        <details class="advanced" id="advanced-options">
+          <summary>项目高级选项</summary>
+          <label>
+            <span>ZIP 中的主文档路径（可选）</span>
+            <input id="main-file" type="text" placeholder="例如 paper/main.tex">
+          </label>
+          <p>当 LaTeX 或 Markdown 使用图片、参考文献或其他资源时，请将完整项目压缩成 ZIP 上传。</p>
+        </details>
+
+        <div class="message" id="message" role="status" aria-live="polite" hidden></div>
+        <button class="convert-button" id="convert-button" type="button" disabled>
+          <span class="button-label">开始转换</span>
+          <span class="button-arrow" aria-hidden="true">↗</span>
+        </button>
+      </section>
+
+      <section class="feature-grid" aria-label="功能说明">
+        <article>
+          <span>01</span>
+          <h3>结构优先</h3>
+          <p>保留标题、段落、列表、表格、脚注与常见行内样式。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>公式友好</h3>
+          <p>在 LaTeX 数学公式、Word 公式与 Markdown 数学语法之间迁移。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>资源随行</h3>
+          <p>含图片或项目资源时自动打包 ZIP，不让正文与附件失散。</p>
+        </article>
+      </section>
+
+      <section class="format-note">
+        <p>格式转换是一种翻译，而非像素级复刻。</p>
+        <p>复杂分页、文本框、修订记录、宏和自定义 LaTeX 命令可能需要转换后微调。</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>DOCUMENT BRIDGE · LOCAL FIRST</span>
+      <a href="/api/docs">API</a>
+    </footer>
+  </div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
+
