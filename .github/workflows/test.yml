@@ -17,8 +17,8 @@ jobs:
       matrix:
         python-version: ["3.10", "3.12", "3.14"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
@@ -28,4 +28,3 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Six-path integration test
         run: python -m tests.integration_smoke
-

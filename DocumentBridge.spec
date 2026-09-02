@@ -7,6 +7,8 @@ from PyInstaller.utils.hooks import collect_submodules
 
 project_root = Path(SPEC).resolve().parent
 pandoc_path = Path(pypandoc.get_pandoc_path())
+if not pandoc_path.is_file() and pandoc_path.with_suffix(".exe").is_file():
+    pandoc_path = pandoc_path.with_suffix(".exe")
 
 hidden_imports = collect_submodules("uvicorn") + [
     "multipart",
@@ -55,4 +57,3 @@ coll = COLLECT(
     upx_exclude=[],
     name="DocumentBridge",
 )
-
